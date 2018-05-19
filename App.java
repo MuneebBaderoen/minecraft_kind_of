@@ -192,7 +192,7 @@ public class App{
             case "persist":
                 app.createTable(conn);
                 app.truncateTable(conn);
-                app.walk(conn, "testDir");
+                app.walk(conn, "world");
                 break;
             case "restore":
                 app.restoreFiles(conn);
