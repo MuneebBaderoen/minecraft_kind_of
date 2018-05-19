@@ -23,9 +23,10 @@ public class App {
      * @return a Connection object
      */
     public Connection connect() {
+        Connection conn = null;
         try {
             Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection(System.getenv("JDBC_DATABASE_URL"));
+            conn = DriverManager.getConnection(System.getenv("JDBC_DATABASE_URL"));
             System.out.println("Connected to the PostgreSQL server successfully.");
         } catch (Exception e) {
             System.out.println(e.getMessage());
