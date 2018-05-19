@@ -22,10 +22,15 @@ public class App {
      *
      * @return a Connection object
      */
-    public Connection connect() throws SQLException {
-        // Class.forName("org.postgresql.Driver");
-        Connection conn = DriverManager.getConnection(System.getenv("JDBC_DATABASE_URL"));
-        System.out.println("Connected to the PostgreSQL server successfully.");
+    public Connection connect() {
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection conn = DriverManager.getConnection(System.getenv("JDBC_DATABASE_URL"));
+            System.out.println("Connected to the PostgreSQL server successfully.");
+        } catch (Exception e) {
+            System.out.println(e.getMessage())
+            e.printStackTrace()
+        }
 
         return conn;
     }
@@ -156,7 +161,7 @@ public class App {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException{
+    public static void main(String[] args) {
         System.out.println("Starting directory replication");
         App app = new App();
         Connection conn = null;
