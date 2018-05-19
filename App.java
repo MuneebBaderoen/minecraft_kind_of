@@ -28,8 +28,8 @@ public class App {
             Connection conn = DriverManager.getConnection(System.getenv("JDBC_DATABASE_URL"));
             System.out.println("Connected to the PostgreSQL server successfully.");
         } catch (Exception e) {
-            System.out.println(e.getMessage())
-            e.printStackTrace()
+            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
         return conn;
