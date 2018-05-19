@@ -16,8 +16,10 @@ fi
 
 # Do an inline sync first, then start the background job
 echo "Starting sync..."
-bin/sync $DATABASE_URL
-eval "while true; do sleep ${AWS_SYNC_INTERVAL:-60}; bin/sync $DATABASE_URL; done &"
+pwd
+javac App.java
+/app/sync
+eval "while true; do sleep ${AWS_SYNC_INTERVAL:-60}; /app/sync; done &"
 sync_pid=$!
 
 # create server config
