@@ -8,11 +8,11 @@ if [ -z "$NGROK_API_TOKEN" ]; then
   exit 1
 fi
 
-# # Start the TCP tunnel
-# ngrok_cmd="bin/ngrok tcp -authtoken $NGROK_API_TOKEN -log stdout --log-level debug ${NGROK_OPTS} ${mc_port}"
-# echo "Starting ngrok..."
-# eval "$ngrok_cmd | tee ngrok.log &"
-# ngrok_pid=$!
+# Start the TCP tunnel
+ngrok_cmd="bin/ngrok tcp -authtoken $NGROK_API_TOKEN -log stdout --log-level debug ${NGROK_OPTS} ${mc_port}"
+echo "Starting ngrok..."
+eval "$ngrok_cmd | tee ngrok.log &"
+ngrok_pid=$!
 
 # Do an inline sync first, then start the background job
 echo "Starting sync..."
@@ -48,11 +48,11 @@ java -Xmx${heap} -Xms${heap} -jar minecraft.jar nogui &
 main_pid=$!
 
 # Flush the logfile every second, and ensure that the logfile exists
-# screen -X "logfile 1" && sleep 1
+screen -X "logfile 1" && sleep 1
 
-# echo "Tailing log"
-# eval "tail -f screenlog.0 &"
-# tail_pid=$!
+echo "Tailing log"
+eval "tail -f screenlog.0 &"
+tail_pid=$!
 
 trap "kill $ngrok_pid $main_pid $sync_pid $tail_pid" SIGTERM
 trap "kill -9 $ngrok_pid $main_pid $sync_pid $tail_pid; exit" SIGKILL
