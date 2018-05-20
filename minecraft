@@ -14,8 +14,10 @@ echo "Starting ngrok..."
 eval "$ngrok_cmd | tee ngrok.log &"
 ngrok_pid=$!
 
-# # Do an inline sync first, then start the background job
-ruby ./srv/entry.rb ${port} $DATABASE_URL
+# Do an inline sync first, then start the background job
+eval "screen -L -h 2048 -dmS sync ruby ./srv/entry.rb ${port} $DATABASE_URL"
+sync_pid=$!
+
 sleep 60
 
 # create server config
