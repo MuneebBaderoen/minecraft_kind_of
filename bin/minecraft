@@ -15,12 +15,12 @@ eval "$ngrok_cmd | tee ngrok.log &"
 ngrok_pid=$!
 
 # Do an inline sync first, then start the background job
-echo "Starting sync..."
-pwd
-javac App.java
-/app/sync
-eval "while true; do sleep ${AWS_SYNC_INTERVAL:-60}; /app/sync; done &"
-sync_pid=$!
+# echo "Starting sync..."
+# pwd
+# javac App.java
+# /app/sync
+# eval "while true; do sleep ${AWS_SYNC_INTERVAL:-60}; /app/sync; done &"
+# sync_pid=$!
 
 # create server config
 echo "server-port=${mc_port}" >> /app/server.properties
