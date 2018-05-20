@@ -85,7 +85,7 @@ Thread.new do # trivial example work thread
         puts "[SYNC] Restoring complete"
     end
 
-    sleep 30
+    sleep 300
   end
 end
 
