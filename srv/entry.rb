@@ -3,6 +3,7 @@ require 'sinatra'
 require 'active_record'
 require 'pry'
 
+set :port, ARGV[0] || 4567
 $sum = 0
 
 def get_connection()
@@ -80,18 +81,13 @@ Thread.new do # trivial example work thread
         puts "[SYNC] Persisting complete"
     else
         puts "[SYNC] Restoring files"
-        # restore_files
+        restore_files
         puts "[SYNC] Restoring complete"
     end
 
-    sleep 10
+    sleep 30
   end
 end
-
-get '/sum' do
-  "Testing background work thread: sum is #{$sum}"
-end
-
 
 get '/' do
     # Landing route,
