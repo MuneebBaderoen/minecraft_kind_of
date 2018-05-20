@@ -1,0 +1,27 @@
+t=2018-05-20T05:35:20+0000 lvl=warn msg="failed to get home directory, using $HOME instead" err="user: Current not implemented on linux/amd64" $HOME=/app
+t=2018-05-20T05:35:20+0000 lvl=info msg="no configuration paths supplied"
+t=2018-05-20T05:35:20+0000 lvl=info msg="ignoring default config path, could not stat it" path=/app/.ngrok2/ngrok.yml err="stat /app/.ngrok2/ngrok.yml: no such file or directory"
+t=2018-05-20T05:35:20+0000 lvl=dbug msg="init storage" obj=controller mem size=52428800 err=nil
+t=2018-05-20T05:35:20+0000 lvl=dbug msg="Dialing direct, no proxy" obj=tunSess
+t=2018-05-20T05:35:20+0000 lvl=info msg="run component" obj=controller comp="signal handler"
+t=2018-05-20T05:35:20+0000 lvl=info msg="run component" obj=controller comp="Tunnel session"
+t=2018-05-20T05:35:20+0000 lvl=info msg="run component" obj=controller comp=updater
+t=2018-05-20T05:35:20+0000 lvl=info msg="run component" obj=controller comp="memory storage"
+t=2018-05-20T05:35:20+0000 lvl=info msg="run component" obj=controller comp=web
+t=2018-05-20T05:35:20+0000 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040
+t=2018-05-20T05:35:20+0000 lvl=dbug msg="update check" obj=updater
+t=2018-05-20T05:35:21+0000 lvl=dbug msg="open stream" obj=csess id=a14e83bb13c9 reqtype=0 err=nil
+t=2018-05-20T05:35:21+0000 lvl=dbug msg="encode request" obj=csess id=a14e83bb13c9 sid=3 req="&{Version:[2] ClientId: Extra:0xc42008cb80}" err=nil
+t=2018-05-20T05:35:21+0000 lvl=dbug msg="decoded response" obj=csess id=a14e83bb13c9 sid=3 resp="&{Version:2 ClientId:c7ada55dc56f27f81ef7c72cac548c4a Error: Extra:map[PlanName:Free Version:prod Cookie:2G1dcsYdsnnxkAf2SeyZw3kNl+dc03pf$Nslmi3ISICip/6IBpRABhso1JQVDwRLXScbFLKSHMBVVILzChAMGye3vzlhGx8nVKn5l5hEJz6Q0iQKWlxf/ryekJoWTFyJx4D4T68zWXpfsp6Pk5xssMcwEvXG0yG/10VIOHf+6oBqxoi3wsbdMBLmc50FzRT88dFHKO8uzv04F+KqX3LMNI+fB42ixGb41ypdAN3Zvj/uUYf+l AccountName:Muneeb Baderoen SessionDuration:0]}" err=nil
+t=2018-05-20T05:35:21+0000 lvl=info msg="tunnel session started" obj=tunSess
+t=2018-05-20T05:35:21+0000 lvl=info msg="client session established" obj=csess id=9512ff3b1319
+t=2018-05-20T05:35:21+0000 lvl=dbug msg="open stream" obj=csess id=a14e83bb13c9 clientid=c7ada55dc56f27f81ef7c72cac548c4a reqtype=1 err=nil
+t=2018-05-20T05:35:21+0000 lvl=dbug msg="encode request" obj=csess id=a14e83bb13c9 clientid=c7ada55dc56f27f81ef7c72cac548c4a sid=7 req="&{Id: ClientId: Proto:tcp Opts:0xc42049e6c0 Extra:0xc4202d1ce0}" err=nil
+t=2018-05-20T05:35:21+0000 lvl=dbug msg="decoded response" obj=csess id=a14e83bb13c9 clientid=c7ada55dc56f27f81ef7c72cac548c4a sid=7 resp="&{ClientId:a3a099a3683ff5bdca54e046414db843 URL:tcp://0.tcp.ngrok.io:19246 Proto:tcp Opts:map[Addr:0.tcp.ngrok.io:19246] Error: Extra:map[Token:05podaurT+Svwd8XgTUaqSfQrE+bdr8A$bmTQ7ChMVDew+FZzibltDM+e6lK7YXPlHpdt51F4TsIVHsIDsudWOXnOBeCcdqRO9qWt5mk0ZlGYpXEft+RVLtEkkKi+og==]}" err=nil
+t=2018-05-20T05:35:21+0000 lvl=dbug msg="start tunnel listen" obj=tunSess name=command_line proto=tcp opts=&{Addr:} err=nil
+t=2018-05-20T05:35:21+0000 lvl=dbug msg="no update available" obj=updater
+t=2018-05-20T05:35:31+0000 lvl=dbug msg="heartbeat received" obj=csess id=a14e83bb13c9 clientid=c7ada55dc56f27f81ef7c72cac548c4a latency_ms=85
+t=2018-05-20T05:35:41+0000 lvl=dbug msg="heartbeat received" obj=csess id=a14e83bb13c9 clientid=c7ada55dc56f27f81ef7c72cac548c4a latency_ms=85
+t=2018-05-20T05:35:51+0000 lvl=dbug msg="heartbeat received" obj=csess id=a14e83bb13c9 clientid=c7ada55dc56f27f81ef7c72cac548c4a latency_ms=85
+t=2018-05-20T05:36:01+0000 lvl=dbug msg="heartbeat received" obj=csess id=a14e83bb13c9 clientid=c7ada55dc56f27f81ef7c72cac548c4a latency_ms=85
+t=2018-05-20T05:36:11+0000 lvl=dbug msg="heartbeat received" obj=csess id=a14e83bb13c9 clientid=c7ada55dc56f27f81ef7c72cac548c4a latency_ms=85

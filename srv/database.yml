@@ -1,3 +1,3 @@
 production:
-  url: <%= ENV["DATABASE_URL"] %>
+  adapter: 'postgresql'
   pool: 15
