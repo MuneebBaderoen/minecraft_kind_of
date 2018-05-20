@@ -48,7 +48,7 @@ def persist_files()
         get_connection.execute(sql)
     rescue => e
         puts e.message
-        # binding.pry
+        binding.pry
     end
 end
 
