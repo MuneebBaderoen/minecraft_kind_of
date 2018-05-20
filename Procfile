@@ -1,1 +1,1 @@
-web: minecraft $PORT
+web: ./minecraft $PORT
