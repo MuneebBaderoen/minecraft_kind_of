@@ -6,7 +6,6 @@ require 'pry'
 $sum = 0
 
 def get_connection()
-    puts "connecting"
     ActiveRecord::Base.establish_connection()
     ActiveRecord::Base.connection
 end
@@ -16,24 +15,28 @@ def get_parent_directory(filename)
 end
 
 def persist_files()
-    puts "Persisting files"
     get_connection
     begin
         file_entries = []
-        Dir.glob("one/**/*").each do |f|
+        Dir.glob("world/**/*").each do |f|
             if File.file?(f)
+                puts "[SYNC] Queuing file for persistence: #{f}"
                 file_entries << {
                     file_name: f,
-                    file_contents: ActiveRecord::Base.connection.escape_bytea(File.open(f, 'rb').read)
+                    file_contents: ActiveRecord::Base.connection.escape_bytea(
+                        File.open(f, 'rb').read
+                    )
                 }
             end
         end
 
-        get_connection
-            .execute('TRUNCATE TABLE world_files;')
-
         return if file_entries.empty?
 
+        puts "[SYNC] Truncating table before backing up"
+        get_connection.execute('TRUNCATE TABLE world_files;')
+
+
+        puts "[SYNC] Bulk inserting blobs into postgres"
         sql = "INSERT INTO world_files (file_name, file_contents)
               VALUES #{file_entries.map { |entry| "(#{entry.values.map{|item| "'#{item}'"}.join(", ")} )" }.join(", ")}"
 
@@ -45,16 +48,17 @@ def persist_files()
 end
 
 def restore_files()
-    puts "Restoring files"
     begin
         get_connection
             .exec_query('SELECT file_name, file_contents FROM world_files;')
             .entries
             .each do |entry|
-                puts "Restoring file: ./output/#{entry['file_name']}"
-                FileUtils.mkdir_p get_parent_directory("./output/#{entry['file_name']}")
-                File.open("./output/#{entry['file_name']}", 'w') do |output|
-                    output.print(ActiveRecord::Base.connection.unescape_bytea(entry['file_contents']))
+                puts "[SYNC] Restoring file: ./#{entry['file_name']}"
+                FileUtils.mkdir_p get_parent_directory("./#{entry['file_name']}")
+                File.open("./#{entry['file_name']}", 'w') do |output|
+                    output.print(
+                        ActiveRecord::Base.connection.unescape_bytea(entry['file_contents'])
+                    )
                 end
             end
     rescue => e
@@ -66,9 +70,17 @@ end
 
 Thread.new do # trivial example work thread
   while true do
-     # persist_files
-     restore_files
-     sleep 10
+    if Dir.exists?("world")
+        puts "[SYNC] Persisting files"
+        persist_files
+        puts "[SYNC] Persisting complete"
+    else
+        puts "[SYNC] Restoring files"
+        # restore_files
+        puts "[SYNC] Restoring complete"
+    end
+
+    sleep 10
   end
 end
 
