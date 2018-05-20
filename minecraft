@@ -39,14 +39,15 @@ case $limit in
   ;;
 esac
 
-# echo "Starting: minecraft ${mc_port}"
-eval "screen -L -h 2048 -dmS minecraft java -Xmx${heap} -Xms${heap} -jar minecraft.jar nogui"
-main_pid=$!
-
 # echo "Tailing log"
 # eval "tail -f screenlog.0 &"
 # tail_pid=$!
 
 trap "kill $ngrok_pid $main_pid $sync_pid" SIGTERM
 trap "kill -9 $ngrok_pid $main_pid $sync_pid; exit" SIGKILL
+
+# echo "Starting: minecraft ${mc_port}"
+# eval "screen -L -h 2048 -dmS minecraft java -Xmx${heap} -Xms${heap} -jar minecraft.jar nogui"
+java -Xmx${heap} -Xms${heap} -jar minecraft.jar nogui
+main_pid=$!
 
