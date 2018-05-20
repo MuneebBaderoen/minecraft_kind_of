@@ -8,7 +8,8 @@ $sum = 0
 
 def get_connection()
     begin
-        ActiveRecord::Base.establish_connection()
+        connection_details = YAML::load(File.open('config/database.yml'))
+        ActiveRecord::Base.establish_connection(connection_details)
         ActiveRecord::Base.connection
     rescue => e
         binding.pry
