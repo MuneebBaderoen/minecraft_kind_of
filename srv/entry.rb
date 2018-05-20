@@ -8,11 +8,10 @@ $sum = 0
 
 def get_connection()
     begin
-        connection_details = YAML::load(File.open('config/database.yml'))
-        ActiveRecord::Base.establish_connection(connection_details)
+        ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
         ActiveRecord::Base.connection
     rescue => e
-        binding.pry
+        # binding.pry
     end
 end
 
@@ -49,7 +48,7 @@ def persist_files()
         get_connection.execute(sql)
     rescue => e
         puts e.message
-        binding.pry
+        # binding.pry
     end
 end
 
@@ -69,7 +68,7 @@ def restore_files()
             end
     rescue => e
         puts e.message
-        binding.pry
+        # binding.pry
     end
 
 end
