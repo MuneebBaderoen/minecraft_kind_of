@@ -6,8 +6,12 @@ require 'pry'
 $sum = 0
 
 def get_connection()
-    ActiveRecord::Base.establish_connection()
-    ActiveRecord::Base.connection
+    begin
+        ActiveRecord::Base.establish_connection()
+        ActiveRecord::Base.connection
+    rescue => e
+        binding.pry
+    end
 end
 
 def get_parent_directory(filename)
@@ -43,7 +47,7 @@ def persist_files()
         get_connection.execute(sql)
     rescue => e
         puts e.message
-        # binding.pry
+        binding.pry
     end
 end
 
@@ -63,7 +67,7 @@ def restore_files()
             end
     rescue => e
         puts e.message
-        # binding.pry
+        binding.pry
     end
 
 end
