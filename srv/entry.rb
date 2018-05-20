@@ -8,7 +8,7 @@ $sum = 0
 
 def get_connection()
     begin
-        ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'])
+        ActiveRecord::Base.establish_connection(ARGV[1])
         ActiveRecord::Base.connection
     rescue => e
         # binding.pry
