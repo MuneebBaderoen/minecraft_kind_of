@@ -43,13 +43,10 @@ esac
 eval "screen -L -h 2048 -dmS minecraft java -Xmx${heap} -Xms${heap} -jar minecraft.jar nogui"
 main_pid=$!
 
-# Flush the logfile every second, and ensure that the logfile exists
-screen -X "logfile 1" && sleep 1
+# echo "Tailing log"
+# eval "tail -f screenlog.0 &"
+# tail_pid=$!
 
-echo "Tailing log"
-eval "tail -f screenlog.0 &"
-tail_pid=$!
-
-trap "kill $ngrok_pid $main_pid $sync_pid $tail_pid" SIGTERM
-trap "kill -9 $ngrok_pid $main_pid $sync_pid $tail_pid; exit" SIGKILL
+trap "kill $ngrok_pid $main_pid $sync_pid" SIGTERM
+trap "kill -9 $ngrok_pid $main_pid $sync_pid; exit" SIGKILL
 
