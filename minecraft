@@ -18,7 +18,7 @@ ngrok_pid=$!
 eval "screen -L -h 2048 -dmS sync ruby ./srv/entry.rb ${port} ${DATABASE_URL}"
 sync_pid=$!
 
-sleep 60
+sleep 10
 
 # create server config
 echo "server-port=${mc_port}" >> /app/server.properties
